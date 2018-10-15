@@ -1,0 +1,22 @@
+name: workaround-snap-arch-triplet
+version: current
+summary: A launcher part that sets the SNAP_ARCH_TRIPLET environmental variable
+description: |
+  This remote part provides a launcher that sets the `SNAP_ARCH_TRIPLET` environmental variable when it is not declared.
+
+  Refer the following forum topic for more info:
+
+    GNU triplet via SNAP_ARCH_TRIPLET - snapd - snapcraft.io
+    https://forum.snapcraft.io/t/gnu-triplet-via-snap-arch-triplet/3530
+
+grade: stable
+confinement: strict
+
+parts:
+  workaround-snap-arch-triplet:
+    plugin: dump
+    source: snap/local/launchers
+    organize:
+      '*': bin/
+    stage:
+    - -bin/README.*
