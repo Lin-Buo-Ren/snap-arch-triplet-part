@@ -22,3 +22,71 @@ parts:
       '*': bin/
     stage:
     - -bin/README.*
+
+  tests:
+    after:
+    - workaround-snap-arch-triplet
+
+    plugin: nil
+
+    # Workaround for implicit source
+    override-pull: 'true'
+
+    override-build: |
+      set \
+        -o errexit \
+        -o nounset \
+        -o xtrace
+
+      result=''
+      SNAP_ARCH=''
+
+      export \
+        SNAP_ARCH
+
+      for SNAP_ARCH in \
+        i386 \
+        amd64 \
+        armel \
+        armhf \
+        arm64 \
+        ppc64el \
+        s390x; do
+        printf -- \
+          '\nSetting SNAP_ARCH to %s\n' \
+          "${SNAP_ARCH}"
+
+        result="$(
+          workaround-snap-arch-triplet-launch \
+            printenv \
+            | grep '^SNAP_ARCH_TRIPLET=' \
+            | cut --delimiter='=' --fields=2
+        )"
+
+        case "${SNAP_ARCH}" in
+          amd64)
+            test \
+              "${result}" = x86_64-linux-gnu
+          ;;
+          armel)
+            test \
+              "${result}" = arm-linux-gnueabi
+          ;;
+          armhf)
+            test \
+              "${result}" = arm-linux-gnueabihf
+          ;;
+          arm64)
+            test \
+              "${result}" = aarch64-linux-gnu
+          ;;
+          ppc64el)
+            test \
+              "${result}" = powerpc64le-linux-gnu
+          ;;
+          *)
+            test \
+              "${result}" = "${SNAP_ARCH}"-linux-gnu
+          ;;
+        esac
+      done
