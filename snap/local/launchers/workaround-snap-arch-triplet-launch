@@ -7,6 +7,13 @@ set \
 	-o nounset \
 	-o pipefail
 
+if ! test -v SNAP_ARCH; then
+	printf -- \
+		'%s: Error: This launcher requires SNAP_ARCH environmental variable to be set and exported.\n' \
+		"$(basename "${BASH_SOURCE[0]}")"
+	exit 1
+fi
+
 declare \
 	SNAP_ARCH_TRIPLET
 
