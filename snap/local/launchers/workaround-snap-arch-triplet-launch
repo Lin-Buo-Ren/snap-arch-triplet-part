@@ -8,7 +8,7 @@ set \
 	-o pipefail
 
 declare \
-    SNAP_ARCH_TRIPLET
+	SNAP_ARCH_TRIPLET
 
 # Refer:
 #
@@ -18,13 +18,13 @@ declare \
 #   https://wiki.debian.org/Multiarch/Tuples
 #   NOTE: Only consider Linux archs with the `released` status in Debian for now
 case "${SNAP_ARCH}" in
-    # These are the special cases
+	# These are the special cases
 	amd64)
 		SNAP_ARCH_TRIPLET=x86_64-linux-gnu
 	;;
 	armel)
-        SNAP_ARCH_TRIPLET=arm-linux-gnueabi
-    ;;
+		SNAP_ARCH_TRIPLET=arm-linux-gnueabi
+	;;
 	armhf)
 		SNAP_ARCH_TRIPLET=arm-linux-gnueabihf
 	;;
@@ -32,8 +32,8 @@ case "${SNAP_ARCH}" in
 		SNAP_ARCH_TRIPLET=aarch64-linux-gnu
 	;;
 	ppc64el)
-        SNAP_ARCH_TRIPLET=powerpc64le-linux-gnu
-    ;;
+		SNAP_ARCH_TRIPLET=powerpc64le-linux-gnu
+	;;
 	# Consider rest of them not exceptions
 	s390x \
 	|*)
@@ -42,7 +42,7 @@ case "${SNAP_ARCH}" in
 esac
 
 export \
-    SNAP_ARCH_TRIPLET
+	SNAP_ARCH_TRIPLET
 
 # Finally run the launching command
 exec "${@}"
