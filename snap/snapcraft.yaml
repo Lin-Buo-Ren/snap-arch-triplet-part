@@ -4,7 +4,9 @@ summary: A launcher part that sets the SNAP_ARCH_TRIPLET environmental variable
 description: |
   This remote part provides a launcher that sets the `SNAP_ARCH_TRIPLET` environmental variable when it is not declared.
 
-  Refer the following forum topic for more info:
+  Include this part in your snap and prepend the `workaround-snap-arch-triplet-launch` launcher in your app. command before any launchers that has the reference of `SNAP_ARCH_TRIPLET`.
+
+  Refer the following forum topic for more info about this environmental variable:
 
     GNU triplet via SNAP_ARCH_TRIPLET - snapd - snapcraft.io
     https://forum.snapcraft.io/t/gnu-triplet-via-snap-arch-triplet/3530
