@@ -18,7 +18,6 @@ parts:
   workaround-snap-arch-triplet:
     plugin: dump
     source: snap/local/launchers
-    source-type: local
     organize:
       '*-launch': bin/
     stage:
