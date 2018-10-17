@@ -19,9 +19,9 @@ parts:
     plugin: dump
     source: snap/local/launchers
     organize:
-      '*': bin/
+      '*-launch': bin/
     stage:
-    - -bin/README.*
+    - -README.*
 
   tests:
     after:
