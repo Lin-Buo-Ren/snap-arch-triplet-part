@@ -17,7 +17,7 @@ confinement: strict
 parts:
   workaround-snap-arch-triplet:
     plugin: dump
-    source: snap/local/launchers
+    source: launchers
     organize:
       '*-launch': bin/
     stage:
